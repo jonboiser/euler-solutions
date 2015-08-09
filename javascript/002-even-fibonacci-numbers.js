@@ -3,18 +3,12 @@ var isEven = require('./001-multiples-of-3-and-5').isMultipleOf(2);
 var testing = !true;
 
 fibonacci = _.memoize(function(n) {
-  if(n === 1) {
-    return 1;
-  } else if (n === 2) {
-    return 2;
+  if(n <= 2) {
+    return n;
   } else {
     return fibonacci(n-1) + fibonacci(n-2);
   }
 });
-
-function sum(x, y) {
-  return x + y;
-}
 
 function theAnswer(max) {
   var i = 1, total = 0, current;

@@ -1,7 +1,7 @@
 var _ = require('lodash');
 
 var isPrime = _.memoize(function(N) {
-  for(var i = 2; i < N/2; i++) {
+  for(var i = 2; i <= N/2; i++) {
     if (N % i === 0)
       return false;
   }
@@ -41,6 +41,17 @@ function theAnswer(N) {
 var testing = !true;
 if(testing) {
   var test = require('tape');
+  test('isPrime', function(t) {
+    t.plan(6);
+    t.equal(isPrime(1), true);
+    t.equal(isPrime(2), true);
+    t.equal(isPrime(3), true);
+    t.equal(isPrime(19), true);
+    t.equal(isPrime(4), false);
+    t.equal(isPrime(10), false);
+    t.equal(isPrime(25), false);
+  });
+
   test('largest prime factor', function(t) {
     t.plan(3);
     t.looseEqual([1,5,7,13,29], factorsOf(13195), '13195');

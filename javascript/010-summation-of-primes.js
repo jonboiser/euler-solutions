@@ -3,7 +3,7 @@ var _ = require('lodash');
 function sieve(N) {
   var primes = [];
   var range = _.range(2,N+1);
-  var delta0 = 0;
+  var noChange = 0;
   var oldlength;
   var notDivisibleBy = function(p) {
     return function(x) {
@@ -11,7 +11,7 @@ function sieve(N) {
     };
   };
 
-  while(range.length > 0 && delta0 < 10) {
+  while(range.length > 0 && noChange < 10) {
     p = range.shift();
     primes.push(p);
     oldlength = range.length;
@@ -19,7 +19,7 @@ function sieve(N) {
     
     // heuristic: if primes stop getting filtered out, then stop.
     if(oldlength - range.length === 0)
-      delta0++; 
+      noChange++; 
   }
   return(primes.concat(range));
 }

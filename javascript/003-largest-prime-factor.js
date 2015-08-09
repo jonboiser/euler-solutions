@@ -29,8 +29,10 @@ function factorsOf(N) {
     }
   };
 
-  return go(N, []);
+  return go(N, [1]);
 }
+
+exports.factorsOf = factorsOf;
 
 function theAnswer(N) {
   return _.max(factorsOf(N));
@@ -40,8 +42,9 @@ var testing = !true;
 if(testing) {
   var test = require('tape');
   test('largest prime factor', function(t) {
-    t.plan(1);
-    t.looseEqual([5,7,13,29], factorsOf(13195), '13195');
+    t.plan(2);
+    t.looseEqual([1,5,7,13,29], factorsOf(13195), '13195');
+    t.looseEqual([1], factorsOf(1), '1');
   });
 
   test('the answer', function(t) {

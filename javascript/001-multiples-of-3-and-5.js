@@ -19,8 +19,6 @@ function theAnswer(n) {
     }, 0).value();
 }
 
-exports.isMultipleOf = isMultipleOf;
-
 var testing = !true;
 if (testing) {
   var test = require('tape');

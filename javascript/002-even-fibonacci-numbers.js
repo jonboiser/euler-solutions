@@ -1,6 +1,6 @@
 var _ = require('lodash');
-var isEven = require('./001-multiples-of-3-and-5').isMultipleOf(2);
 
+var isEven = function(x) { return x % 2 === 0; };
 var fibonacci = _.memoize(function(n) {
   if(n <= 0)
     throw new Error('n must be at least 1');

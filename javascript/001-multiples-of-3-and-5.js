@@ -1,5 +1,5 @@
-var tap = require('tap');
 var _ = require('lodash');
+var testing = !true;
 
 function isMultipleOf(n) {
   return function(x) {
@@ -20,21 +20,26 @@ function theAnswer(n) {
     }, 0).value();
 }
 
-tap.test('Test predicate', function(t) {
-  var shouldPass = [3,5,9,12,15,18,20,21,25];
-  var shouldNotPass = [1,2,4,7,8,11,13,14,16,17];
-  
-  t.equal(true, _(shouldPass).reduce(function(acc, x) {
-    return acc && isMultipleOf3Or5(x);
-  }, true), 'positive cases');
-  
-  t.equal(false, _(shouldNotPass).reduce(function(acc, x) {
-      return acc || isMultipleOf3Or5(x);
-    }, false), 'negative cases');
-});
+exports.isMultipleOf = isMultipleOf;
 
-tap.test('Test answer for small n', function(t) {
-  t.equal(3+5, theAnswer(6), '< 6');
-  t.equal(3+5+6+9+10+12+15+18, theAnswer(20), '< 20');
-  t.equal(233168, theAnswer(1000), '< 1000');
-});
+if (testing) {
+  var tap = require('tap');
+  tap.test('Test predicate', function(t) {
+    var shouldPass = [3,5,9,12,15,18,20,21,25];
+    var shouldNotPass = [1,2,4,7,8,11,13,14,16,17];
+    
+    t.equal(true, _(shouldPass).reduce(function(acc, x) {
+      return acc && isMultipleOf3Or5(x);
+    }, true), 'positive cases');
+    
+    t.equal(false, _(shouldNotPass).reduce(function(acc, x) {
+        return acc || isMultipleOf3Or5(x);
+      }, false), 'negative cases');
+  });
+
+  tap.test('Test answer for small n', function(t) {
+    t.equal(3+5, theAnswer(6), '< 6');
+    t.equal(3+5+6+9+10+12+15+18, theAnswer(20), '< 20');
+    t.equal(233168, theAnswer(1000), '< 1000');
+  });
+}

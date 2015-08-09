@@ -1,5 +1,4 @@
 var _ = require('lodash');
-var testing = !true;
 
 function isMultipleOf(n) {
   return function(x) {
@@ -22,9 +21,11 @@ function theAnswer(n) {
 
 exports.isMultipleOf = isMultipleOf;
 
+var testing = !true;
 if (testing) {
-  var tap = require('tap');
-  tap.test('Test predicate', function(t) {
+  var test = require('tape');
+  test('Test predicate', function(t) {
+    t.plan(2);
     var shouldPass = [3,5,9,12,15,18,20,21,25];
     var shouldNotPass = [1,2,4,7,8,11,13,14,16,17];
     
@@ -37,7 +38,8 @@ if (testing) {
       }, false), 'negative cases');
   });
 
-  tap.test('Test answer for small n', function(t) {
+  test('Test answer for small n', function(t) {
+    t.plan(3);
     t.equal(3+5, theAnswer(6), '< 6');
     t.equal(3+5+6+9+10+12+15+18, theAnswer(20), '< 20');
     t.equal(233168, theAnswer(1000), '< 1000');

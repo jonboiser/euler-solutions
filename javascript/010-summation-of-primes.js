@@ -1,15 +1,15 @@
 var _ = require('lodash');
 
+var notDivisibleBy = (p) => {
+  return (x) => x % p !== 0;
+};
+
 function sieve(N) {
-  var primes = [];
-  var range = _.range(2,N+1);
-  var noChange = 0;
-  var oldlength;
-  var notDivisibleBy = function(p) {
-    return function(x) {
-      return x % p !== 0;
-    };
-  };
+  let primes = [];
+  let range = _.range(2,N+1);
+  let noChange = 0;
+  let oldlength;
+  let p;
 
   while(range.length > 0 && noChange < 10) {
     p = range.shift();
@@ -25,21 +25,19 @@ function sieve(N) {
 }
 
 function theAnswer(N) {
-  return sieve(N).reduce(function(x,y) {
-    return x + y;
-  }, 0);
+  return sieve(N).reduce((x,y) => x + y, 0);
 }
 
 var test = require('tape');
 
-test('sieve', function(t) {
+test('sieve', (t) => {
   t.plan(3);
   t.looseEqual(sieve(5), [2,3,5]);
   t.looseEqual(sieve(10), [2,3,5,7]);
   t.looseEqual(sieve(20), [2,3,5,7,11,13,17,19]);
 });
 
-test('theAnswer', function(t) {
+test('theAnswer', (t) => {
   t.plan(2);
   t.equal(theAnswer(10), 17);
   t.equal(theAnswer(2000000), 142913828922);

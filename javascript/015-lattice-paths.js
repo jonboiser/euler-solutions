@@ -2,7 +2,9 @@ var _ = require('lodash');
 var test = require('tape');
 
 function makeKey(x,y) {
-  return x.toString() + "_" + y.toString();
+  var min = Math.min(x,y).toString();
+  var max = Math.max(x,y).toString();
+  return min.toString() + "_" + max.toString();
 }
 
 var gridPaths = _.memoize(function(rows, cols) {

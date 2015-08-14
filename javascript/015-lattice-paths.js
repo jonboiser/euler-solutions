@@ -8,7 +8,7 @@ function makeKey(x,y) {
 }
 
 var gridPaths = _.memoize(function(rows, cols) {
-  if(rows === 0 || cols ===0) {
+  if(rows*cols === 0) {
     return 1;
   } else {
     return gridPaths(rows-1, cols) + gridPaths(rows, cols-1);

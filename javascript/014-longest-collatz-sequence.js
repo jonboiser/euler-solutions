@@ -2,9 +2,9 @@ var _ = require('lodash');
 
 function next(N) {
   if(N % 2 === 0) {
-    return N/2;
+    return N / 2;
   } else {
-    return 3*N + 1;
+    return (3 * N) + 1;
   }
 }
 
